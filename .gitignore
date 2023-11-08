@@ -1,0 +1,7 @@
+*.zip
+*.tar.zst
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/Velocurien.iml
+.idea/inspectionProfiles/profiles_settings.xml
