@@ -6,7 +6,6 @@ const MongoConnector = require("./db/mongo/mongo.js");
 
 const heartbeat = require("./services/heartbeat.js");
 const extractedData = require("./services/extracted_data.js");
-const transformedData = require("./services/transformed_data.js");
 
 const port = 3000;
 
