@@ -1,5 +1,6 @@
 from geobase_json_to_mongo import import_json_from_url_to_mongo
 from mongo_to_neo4j import import_geobase_to_neo4j
+from mongo_to_mongo_prod import copy_from_staging_to_prod
 import sys
 import os
 import logging
@@ -44,6 +45,13 @@ if __name__ == '__main__':
                 file_info['id_key']
             )
             
-    import_geobase_to_neo4j()
+    # import_geobase_to_neo4j()
+
+    # Call the function, you can retrieve the URIs from environment variables or config files
+    # staging_uri = 'mongodb://stagingdb:27018'
+    # prod_uri = 'mongodb://mongo:27017'
+    # db_name = 'velocurien_staging'  # Change to your staging database name
+
+    # copy_from_staging_to_prod(staging_uri, prod_uri, db_name)
     
     exit(0)

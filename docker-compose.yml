@@ -66,6 +66,21 @@ services:
       - 7474
       - 7687
 
+
+  stagingdb:
+    profiles:
+      - staging
+    restart: always
+    ports:
+      - 27018:27017
+    image: mongodb/mongodb-community-server:7.0.0-ubi8
+    volumes:
+      - staging_dbdata:/data/db
+    networks:
+      - databases-net
+    expose:
+      - 27017
+
   stagingservice:
     profiles:
       - staging
@@ -81,8 +96,11 @@ services:
       - databases-net
     environment:
       - MONGO_STAGING_HOST=stagingdb
-      - MONGO_STAGING_PORT=27017
+      - MONGO_STAGING_PORT=27018
       - MONGO_STAGING_DB=velocurien_staging
+      - MONGO_PROD_HOST=proddb
+      - MONGO_PROD_PORT=27017
+      - MONGO_PROD_DB=velocurien
       - NEO4J_URL=bolt://neo4j:7687
       - NEO4J_USER=neo4j
       - NEO4J_PWD=Cpz63Jwj8w5bDD
@@ -90,20 +108,6 @@ services:
       - stagingdb
       - mongo
       - neo4j
-
-  stagingdb:
-    profiles:
-      - staging
-    restart: always
-    ports:
-      - 27018:27017
-    image: mongodb/mongodb-community-server:7.0.0-ubi8
-    volumes:
-      - staging_dbdata:/data/db
-    networks:
-      - databases-net
-    expose:
-      - 27017
 
 networks:
   webserver-net:
