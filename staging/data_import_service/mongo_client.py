@@ -3,7 +3,7 @@ import logging
 from pymongo import MongoClient, collection, cursor
 
 DEFAULT_MONOGO_HOST = 'stagingDB'
-DEFAULT_MONOGO_PORT = 27017
+DEFAULT_MONOGO_PORT = 27018
 DEFAULT_MONOGO_DB = 'velocurien_staging'
 
 logger = logging.getLogger()
