@@ -32,10 +32,20 @@ async function getExtractedData(req, res) {
   }
 }
 
-async function calculateSum(req, res) {
+async function transformData(req, res) {
   try {
     // Assuming the collection name is 'cyclable_raw' or 'routes_raw' or whatever your actual collection is.
     const collection = db.collection("cyclable_raw");
+
+    const restaurantsRawArray = await db.collection('restaurants_raw').find().toArray();
+
+  // Initialize an empty object to store the counts
+  const restaurants = {};
+  restaurantsRawArray.forEach(document => {
+    const type = document.properties.type;
+    const count = restaurants[type] || 0; 
+    restaurants[type] = count + 1; 
+  });
 
     const aggregateDocumentsCyclableRaw = {
       $group: {
@@ -52,6 +62,7 @@ async function calculateSum(req, res) {
     const totalLongueur = aggregatedResult.length > 0 ? aggregatedResult[0].totalLongueur : 0; // This check is to ensure that you are not trying to access empty array
 
     res.status(200).send({
+      restaurants,
       totalLongueur,
     });
   } catch (err) {
@@ -63,5 +74,5 @@ async function calculateSum(req, res) {
 module.exports = {
   initialize,
   getExtractedData,
-  calculateSum,
+  transformData,
 };

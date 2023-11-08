@@ -6,6 +6,7 @@ const MongoConnector = require("./db/mongo/mongo.js");
 
 const heartbeat = require("./services/heartbeat.js");
 const extractedData = require("./services/extracted_data.js");
+const transformedData = require("./services/transformed_data.js");
 
 const port = 3000;
 
@@ -21,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
 
 const mongoConnector = new MongoConnector(
-  "mongodb://localhost:27017/velocurien",
+  "mongodb://mongo:27017/velocurien",
   "velocurien",
   "",
   ""
@@ -66,7 +67,7 @@ mongoConnector
 
     app.get("/heartbeat", heartbeat.getHeartbeat);
     app.get("/extracted_data", extractedData.getExtractedData);
-    app.get("/sum", extractedData.calculateSum);
+    app.get("/transformed_data", extractedData.transformData);
 
     app.listen(port, () => {
       console.log(`App is listening at http://localhost:${port}`);
