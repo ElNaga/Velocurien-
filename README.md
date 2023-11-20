@@ -1,12 +1,4 @@
-# VÉLOCURIEN (GLO-4035 - Equipe 25)
-
-## Membres de l'équipe
-
-* Ghislain Godbout
-* Anne-Gabriel Dallaire
-* Catalina Chirila
-* Mathieu Labonté
-* Thomas Gerbaud
+# VÉLOCURIEN 
 
 ## Phase 2 : Dérisquer l'application
 
